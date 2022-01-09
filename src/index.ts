@@ -22,6 +22,10 @@ client.commandManager.registerCommandMissingPermissionHandler((msg, perms) => {
   msg.channel.send(`Missing permissions \`${perms.join(", ")}\``);
 })
 
+client.commandManager.registerCommandErrorHandler((err, msg) => {
+  msg.channel.send((err as Error).message);
+})
+
 client.on("ready", () => console.log(client.user?.username, "is ready!"))
 client.on("messageCreate", msg => client.commandManager.handleMessage(msg));
 
