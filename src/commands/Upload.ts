@@ -8,20 +8,24 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
-    const prompt = new Prompt(msg);
+    const prompt = new Prompt(msg, { time: 60 * 1000 });
 
     const collected = await prompt.collect("Please upload nft");
-    const image = collected.attachments.first();
+    const attachments = collected.attachments;
 
-    if (!image) {
+    if (attachments.size <= 0) {
       throw new Error("no image was uploaded");
     }
 
-    const imageUrl = image.url;
-    const id = client.nft.autonum;
+    for (const image of attachments.values()) {
 
-    client.nft.set(id, imageUrl);
+      const imageUrl = image.url;
+      const id = client.nft.autonum;
 
-    msg.channel.send(`Successfully saved #${id} nft`);
+      client.nft.set(id, imageUrl);
+
+      msg.channel.send(`Successfully saved #${id} nft`);
+    }
+
   }
 }
