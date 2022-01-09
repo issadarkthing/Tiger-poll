@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dev": "nodemon dist/index.js"
+  },
+  "dependencies": {
+    "@jiman24/commandment": "^0.4.0",
+    "@jiman24/discordjs-prompt": "^0.0.1",
+    "@jiman24/discordjs-utils": "^0.0.1",
+    "discord.js": "^13.5.1",
+    "dotenv": "^10.0.0",
+    "enmap": "^5.8.7"
+  }
+}
