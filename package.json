@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@jiman24/commandment": "^0.4.0",
+    "@jiman24/discordjs-button": "^0.1.0",
     "@jiman24/discordjs-prompt": "^0.0.1",
     "@jiman24/discordjs-utils": "^0.0.1",
     "discord.js": "^13.5.1",
