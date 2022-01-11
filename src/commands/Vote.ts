@@ -2,7 +2,7 @@ import { Command } from "@jiman24/commandment";
 import { Message, MessageEmbed } from "discord.js";
 import { client } from "..";
 import { combination } from "../utils";
-import { random } from "@jiman24/discordjs-utils";
+import { random, time } from "@jiman24/discordjs-utils";
 import { ButtonHandler } from "@jiman24/discordjs-button";
 
 
@@ -47,6 +47,8 @@ export default class extends Command {
       const sentMsg = await msg.channel.send({ embeds: embed });
 
       const menu = new ButtonHandler(msg, "Please vote between A or B");
+
+      menu.setTimeout(5 * time.MINUTE);
 
       menu.addButton("A", () => { win = 0 });
       menu.addButton("B", () => { win = 1 });

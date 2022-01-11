@@ -23,7 +23,9 @@ client.commandManager.registerCommandMissingPermissionHandler((msg, perms) => {
 })
 
 client.commandManager.registerCommandErrorHandler((err, msg) => {
-  msg.channel.send((err as Error).message);
+  const e = err as Error;
+  msg.channel.send(e.message);
+  console.log(e.stack);
 })
 
 client.on("ready", () => console.log(client.user?.username, "is ready!"))

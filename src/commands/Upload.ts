@@ -3,6 +3,7 @@ import { Message, PermissionResolvable } from "discord.js";
 import { Prompt } from "@jiman24/discordjs-prompt";
 import { client } from "..";
 import { NFT } from "../structure/NFT";
+import { time } from "@jiman24/discordjs-utils";
 
 export default class extends Command {
   name = "upload";
@@ -11,9 +12,11 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
-    const prompt = new Prompt(msg, { time: 60 * 1000 });
+    const prompt = new Prompt(msg, { time: 10 * time.MINUTE });
 
-    const collected = await prompt.collect("Please upload nft");
+    const collected = await prompt.collect(
+      "Please upload nft. You may upload multiple nft at once"
+    );
     const attachments = collected.attachments;
 
     if (attachments.size <= 0) {
