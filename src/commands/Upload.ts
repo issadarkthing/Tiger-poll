@@ -1,11 +1,12 @@
 import { Command } from "@jiman24/commandment";
-import { Message } from "discord.js";
+import { Message, PermissionResolvable } from "discord.js";
 import { Prompt } from "@jiman24/discordjs-prompt";
 import { client } from "..";
 
 export default class extends Command {
   name = "upload";
   description = "upload new nft";
+  permissions: PermissionResolvable[] = ["ADMINISTRATOR"];
 
   async exec(msg: Message) {
 

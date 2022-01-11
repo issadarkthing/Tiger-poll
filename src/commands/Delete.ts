@@ -1,11 +1,12 @@
 import { Command } from "@jiman24/commandment";
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, PermissionResolvable } from "discord.js";
 import { client } from "..";
 import { Pagination } from "../structure/Pagination";
 
 export default class extends Command {
   name = "delete";
   description = "delete an nft";
+  permissions: PermissionResolvable[] = ["ADMINISTRATOR"];
 
   async exec(msg: Message) {
 
