@@ -31,6 +31,7 @@ export default class extends Command {
 
     })
 
+    await msg.channel.send("Please select which nft to be deleted");
     await menu.run();
   }
 }
