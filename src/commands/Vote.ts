@@ -18,7 +18,7 @@ export default class extends Command {
       rounds = 10;
     }
 
-    const pairs = random.sample(combination([...client.nft.values()]), rounds);
+    const pairs = random.sample(combination([...client.nft.map(x => x.url)]), rounds);
     const embeds = pairs.map(pair => {
       return pair.map((x, i) => {
         const embed = new MessageEmbed()
@@ -47,10 +47,13 @@ export default class extends Command {
       await sentMsg.delete();
 
       const winner = pair[win];
-      const winnerID = client.nft.findKey(x => x === winner)!;
+      const winnerID = client.nft.findKey(x => x.url === winner)!;
 
-      client.vote.set(winnerID, client.vote.get(winnerID) + 1 || 1);
-      msg.channel.send(`#${winnerID} now has ${client.vote.get(winnerID)} votes!`);
+      client.nft.inc(winnerID, "votes");
+
+      const nft = client.nft.get(winnerID)!;
+
+      msg.channel.send(`#${winnerID} now has ${nft.votes} votes!`);
     }
 
     msg.channel.send("voting session completed");

@@ -1,6 +1,7 @@
 import { Command } from "@jiman24/commandment";
 import { Message, MessageEmbed } from "discord.js";
 import { client } from "..";
+import { NFT } from "../structure/NFT";
 import { Pagination } from "../structure/Pagination";
 
 
@@ -10,13 +11,12 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
-    const nfts = client.nft.map((x: string, id: number | string) => {
-      const votes = client.vote.get(id) || 0;
+    const nfts = client.nft.map((x: NFT, id: number | string) => {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
-        .setImage(x)
+        .setImage(x.url)
         .addField("ID", `${id}`, true)
-        .addField("Votes", `${votes}`, true)
+        .addField("Votes", `${x.votes}`, true)
 
       return embed;
     });
