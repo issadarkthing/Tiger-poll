@@ -12,6 +12,10 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
+    if (client.nft.size < 2) {
+      throw new Error("Needs at least 2 nft");
+    }
+
     let rounds = client.nft.size;
 
     if (rounds > 10) {
