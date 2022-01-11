@@ -56,7 +56,7 @@ export class Pagination {
           this.index++;
         }
 
-        this.pages[this.index] && resetEmbed();
+        resetEmbed();
       }
     );
 
