@@ -16,13 +16,17 @@ export default class extends Command {
       throw new Error("Needs at least 2 nft");
     }
 
-    let rounds = client.nft.size;
+
+
+    const combinations = combination([...client.nft.map(x => x.url)]);
+
+    let rounds = combinations.length;
 
     if (rounds > 10) {
       rounds = 10;
     }
 
-    const pairs = random.sample(combination([...client.nft.map(x => x.url)]), rounds);
+    const pairs = random.sample(combinations, rounds);
     const embeds = pairs.map(pair => {
       return pair.map((x, i) => {
         const embed = new MessageEmbed()
