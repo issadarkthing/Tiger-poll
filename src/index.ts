@@ -27,6 +27,27 @@ client.commandManager.registerCommandErrorHandler((err, msg) => {
 })
 
 client.on("ready", () => console.log(client.user?.username, "is ready!"))
-client.on("messageCreate", msg => client.commandManager.handleMessage(msg));
+client.on("messageCreate", msg => { 
+
+  const prefix = client.commandManager.prefix;
+  const isUploadCommand = /^.upload$/.test(msg.content);
+  const isCommand = msg.content.startsWith(prefix);
+
+  if (isCommand) {
+
+    const count = client.nft.size;
+
+    if (!isUploadCommand && count === 0) {
+
+      msg.channel.send(
+        `Please upload at least 2 nft using \`${prefix}upload\` command`
+      );
+
+    } else {
+      client.commandManager.handleMessage(msg);
+    }
+  }
+
+});
 
 client.login(process.env.BOT_TOKEN);
