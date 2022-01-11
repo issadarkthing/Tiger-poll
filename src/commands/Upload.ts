@@ -5,6 +5,7 @@ import { client } from "..";
 
 export default class extends Command {
   name = "upload";
+  description = "upload new nft";
 
   async exec(msg: Message) {
 

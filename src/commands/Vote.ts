@@ -8,6 +8,7 @@ import { ButtonHandler } from "@jiman24/discordjs-button";
 
 export default class extends Command {
   name = "vote";
+  description = "start voting";
 
   async exec(msg: Message) {
 

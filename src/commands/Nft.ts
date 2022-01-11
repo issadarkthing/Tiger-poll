@@ -6,6 +6,7 @@ import { Pagination } from "../structure/Pagination";
 
 export default class extends Command {
   name = "nft";
+  description = "show all nft";
 
   async exec(msg: Message) {
 
