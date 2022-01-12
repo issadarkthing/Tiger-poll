@@ -20,5 +20,7 @@ export function combination<T>(ls: T[]): [T, T][] {
 }
 
 export function nftRank() {
-  return [...client.nft.values()].sort((a, b) => b.votes - a.votes);
+  return [...client.nft]
+    .map(x => ({ ...x[1], id: x[0] }))
+    .sort((a, b) => b.votes - a.votes);
 }

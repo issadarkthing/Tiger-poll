@@ -24,7 +24,7 @@ export default class extends Command {
       if (bet.nftUrl === winNFT.url) {
         const winAmount = bet.amount + Math.round(bet.amount * 0.4);
         client.player.math(playerID, "+", winAmount, "coins");
-        client.player.deleteProp(playerID, "bet");
+        client.player.delete(playerID, "bet");
       }
     }
 
@@ -33,7 +33,8 @@ export default class extends Command {
     }
 
     const nfts = nftRankings.slice(0, 10);
-    const list = toNList(nfts.map(x => `(${x.votes} votes) ${x.url}`));
+    const list = toNList(nfts
+      .map(x => `#${x.id} (${x.votes} votes) ${x.url}`));
 
     const embed = new MessageEmbed()
       .setColor("RANDOM")
