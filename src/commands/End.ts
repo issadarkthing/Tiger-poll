@@ -2,7 +2,6 @@ import { Command } from "@jiman24/commandment";
 import { toNList } from "@jiman24/discordjs-utils";
 import { Message, MessageEmbed } from "discord.js";
 import { client } from "..";
-import { NFT } from "../structure/NFT";
 import { Player } from "../structure/Player";
 import { nftRank } from "../utils";
 
