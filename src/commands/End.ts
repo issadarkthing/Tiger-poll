@@ -1,6 +1,6 @@
 import { Command } from "@jiman24/commandment";
 import { toNList } from "@jiman24/discordjs-utils";
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, PermissionResolvable } from "discord.js";
 import { client } from "..";
 import { Player } from "../structure/Player";
 import { nftRank } from "../utils";
@@ -9,6 +9,7 @@ import { nftRank } from "../utils";
 export default class extends Command {
   name = "end";
   description = "end the nft polling";
+  permissions: PermissionResolvable[] = ["ADMINISTRATOR"];
 
   async exec(msg: Message) {
 
