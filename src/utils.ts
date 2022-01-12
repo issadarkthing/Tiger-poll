@@ -1,3 +1,4 @@
+import { client } from ".";
 
 export const currency = "Token";
 
@@ -16,4 +17,8 @@ export function combination<T>(ls: T[]): [T, T][] {
   }
 
   return [...result.values()].map(x => JSON.parse(x));
+}
+
+export function nftRank() {
+  return [...client.nft.values()].sort((a, b) => b.votes - a.votes);
 }
