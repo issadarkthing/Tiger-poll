@@ -16,7 +16,6 @@ export default class extends Command {
         .setColor("RANDOM")
         .setImage(x.url)
         .addField("ID", `#${id}`, true)
-        .addField("Votes", `${x.votes}`, true)
 
       return embed;
     });
