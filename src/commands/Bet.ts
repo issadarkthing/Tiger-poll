@@ -14,6 +14,15 @@ export default class extends Command {
   async exec(msg: Message, args: string[]) {
 
     const player = Player.fromUser(msg.author);
+
+
+    if (args.length < 2) {
+      const prefix = this.commandManager.prefix;
+      throw new Error(
+        `Please specify bet like this \`${prefix}${this.name} <bet amount> <nft id>\` excluding the \`<>\` sign`
+      );
+    }
+
     const amount = parseInt(args[0]);
     const nftID = parseInt(args[1]);
 
@@ -32,7 +41,7 @@ export default class extends Command {
     const nft = client.nft.get(nftID);
 
     if (!nft) {
-      throw new Error(`#${nftID} nft does not exists`);
+      throw new Error(`nft #${nftID} does not exists`);
     }
 
     const bet: Bet = {
