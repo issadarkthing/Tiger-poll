@@ -42,6 +42,8 @@ export default class extends Command {
     }
 
     player.bet = bet;
+    player.coins -= amount;
+
     player.save();
 
     msg.channel.send(`Successfully placed ${amount} ${currency} bet for #${bet.nftID}`);
