@@ -11,7 +11,9 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
-    const nfts = [...client.nft.values()].sort((a, b) => b.votes - a.votes);
+    const nfts = [...client.nft.values()]
+      .sort((a, b) => b.votes - a.votes)
+      .slice(0, 10)
     const list = toNList(nfts.map(x => `(${x.votes} votes) ${x.url}`));
 
     const embed = new MessageEmbed()
