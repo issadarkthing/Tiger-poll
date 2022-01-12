@@ -5,7 +5,9 @@ specifiers:
   '@jiman24/discordjs-button': ^0.1.0
   '@jiman24/discordjs-prompt': ^0.0.1
   '@jiman24/discordjs-utils': 0.1.2
+  '@types/common-tags': ^1.8.1
   '@types/luxon': ^2.0.9
+  common-tags: ^1.8.2
   discord.js: ^13.5.1
   dotenv: ^10.0.0
   enmap: ^5.8.7
@@ -16,12 +18,14 @@ dependencies:
   '@jiman24/discordjs-button': 0.1.0
   '@jiman24/discordjs-prompt': 0.0.1
   '@jiman24/discordjs-utils': 0.1.2
+  common-tags: 1.8.2
   discord.js: 13.5.1
   dotenv: 10.0.0
   enmap: 5.8.7
   luxon: 2.3.0
 
 devDependencies:
+  '@types/common-tags': 1.8.1
   '@types/luxon': 2.0.9
 
 packages:
@@ -99,6 +103,10 @@ packages:
     resolution: {integrity: sha512-BrzrgtaqEre0qfvI8sMTaEvx+bayuhPmfe2rfeUGPPHYr/PLxCOqkOe4TQTDPb+qcqgNcsAtXV/Ew74mcDIE8w==}
     engines: {node: '>=10'}
     dev: false
+
+  /@types/common-tags/1.8.1:
+    resolution: {integrity: sha512-20R/mDpKSPWdJs5TOpz3e7zqbeCNuMCPhV7Yndk9KU2Rbij2r5W4RzwDPkzC+2lzUqXYu9rFzTktCBnDjHuNQg==}
+    dev: true
 
   /@types/luxon/2.0.9:
     resolution: {integrity: sha512-ZuzIc7aN+i2ZDMWIiSmMdubR9EMMSTdEzF6R+FckP4p6xdnOYKqknTo/k+xXQvciSXlNGIwA4OPU5X7JIFzYdA==}
