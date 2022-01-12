@@ -1,6 +1,7 @@
 import path from "path";
 import { config } from "dotenv";
 import { Client } from "./structure/Client";
+import { DateTime } from "luxon";
 
 config();
 
@@ -14,8 +15,13 @@ client.commandManager.registerCommandNotFoundHandler((msg, cmdName) => {
 })
 
 client.commandManager.registerCommandOnThrottleHandler((msg, cmd, timeLeft) => {
-  const time = (timeLeft / 1000).toFixed(2);
-  msg.channel.send(`You cannot run ${cmd.name} command after ${time} s`);
+  const { hours, minutes, seconds } = DateTime.now()
+    .plus({ milliseconds: timeLeft })
+    .diffNow(["hours", "minutes", "seconds"]);
+
+  msg.channel.send(
+    `You cannot run ${cmd.name} command after **${hours}h ${minutes}m ${seconds}s**`
+  );
 })
 
 client.commandManager.registerCommandMissingPermissionHandler((msg, perms) => {

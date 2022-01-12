@@ -5,9 +5,11 @@ specifiers:
   '@jiman24/discordjs-button': ^0.1.0
   '@jiman24/discordjs-prompt': ^0.0.1
   '@jiman24/discordjs-utils': 0.1.2
+  '@types/luxon': ^2.0.9
   discord.js: ^13.5.1
   dotenv: ^10.0.0
   enmap: ^5.8.7
+  luxon: ^2.3.0
 
 dependencies:
   '@jiman24/commandment': 0.4.0
@@ -17,6 +19,10 @@ dependencies:
   discord.js: 13.5.1
   dotenv: 10.0.0
   enmap: 5.8.7
+  luxon: 2.3.0
+
+devDependencies:
+  '@types/luxon': 2.0.9
 
 packages:
 
@@ -93,6 +99,10 @@ packages:
     resolution: {integrity: sha512-BrzrgtaqEre0qfvI8sMTaEvx+bayuhPmfe2rfeUGPPHYr/PLxCOqkOe4TQTDPb+qcqgNcsAtXV/Ew74mcDIE8w==}
     engines: {node: '>=10'}
     dev: false
+
+  /@types/luxon/2.0.9:
+    resolution: {integrity: sha512-ZuzIc7aN+i2ZDMWIiSmMdubR9EMMSTdEzF6R+FckP4p6xdnOYKqknTo/k+xXQvciSXlNGIwA4OPU5X7JIFzYdA==}
+    dev: true
 
   /@types/node-fetch/2.5.12:
     resolution: {integrity: sha512-MKgC4dlq4kKNa/mYrwpKfzQMB5X3ee5U6fSprkKpToBqBmX4nFZL9cW5jl6sWn+xpRJ7ypWh2yyqqr8UUCstSw==}
@@ -477,6 +487,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: false
+
+  /luxon/2.3.0:
+    resolution: {integrity: sha512-gv6jZCV+gGIrVKhO90yrsn8qXPKD8HYZJtrUDSfEbow8Tkw84T9OnCyJhWvnJIaIF/tBuiAjZuQHUt1LddX2mg==}
+    engines: {node: '>=12'}
     dev: false
 
   /mime-db/1.51.0:

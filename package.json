@@ -11,6 +11,10 @@
     "@jiman24/discordjs-utils": "0.1.2",
     "discord.js": "^13.5.1",
     "dotenv": "^10.0.0",
-    "enmap": "^5.8.7"
+    "enmap": "^5.8.7",
+    "luxon": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^2.0.9"
   }
 }
