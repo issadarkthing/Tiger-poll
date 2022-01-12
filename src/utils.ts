@@ -1,4 +1,5 @@
 
+export const currency = "Token";
 
 /** creates only 2d combination */
 export function combination<T>(ls: T[]): [T, T][] {
