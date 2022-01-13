@@ -29,6 +29,7 @@ export default class extends Command {
         const winAmount = bet.amount + Math.round(bet.amount * 3 / (betsWinCount || 1));
         client.player.math(playerID, "+", winAmount, "coins");
         client.player.delete(playerID, "bet");
+        client.player.update(`${playerID}`, { voted: false });
       }
     }
 

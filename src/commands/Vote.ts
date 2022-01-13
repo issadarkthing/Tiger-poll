@@ -4,12 +4,12 @@ import { client } from "..";
 import { combination } from "../utils";
 import { random, time } from "@jiman24/discordjs-utils";
 import { ButtonHandler } from "@jiman24/discordjs-button";
+import { Player } from "../structure/Player";
 
 
 export default class extends Command {
   name = "vote";
   description = "start voting";
-  throttle = 10 * time.HOUR;
   block = true;
   maxRound = 10;
 
@@ -19,7 +19,11 @@ export default class extends Command {
       throw new Error("Needs at least 2 nft");
     }
 
+    const player = Player.fromUser(msg.author);
 
+    if (player.voted) {
+      throw new Error("You have voted");
+    }
 
     const combinations = combination([...client.nft.map(x => x.url)]);
 
@@ -66,6 +70,10 @@ export default class extends Command {
 
       msg.channel.send(`Round ${i + 1} completed`);
     }
+
+    
+    player.voted = true;
+    player.save();
 
     msg.channel.send("voting session completed");
   }

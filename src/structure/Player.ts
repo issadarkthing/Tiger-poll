@@ -10,6 +10,7 @@ export type Bet = {
 export class Player {
   coins = 100;
   user: User;
+  voted = false;
   bet?: Bet;
 
   constructor(user: User) {
