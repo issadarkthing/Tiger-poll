@@ -28,7 +28,7 @@ export default class extends Command {
       const imageUrl = image.url;
       const id = client.nft.autonum;
 
-      client.nft.set(id, new NFT(imageUrl));
+      client.nft.set(id, { ...new NFT(imageUrl) });
 
       msg.channel.send(`Successfully saved #${id} nft`);
     }
