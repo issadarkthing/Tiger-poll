@@ -15,6 +15,9 @@ export default class extends Command {
 
     const nftRankings = nftRank();
     const winNFT = nftRankings[0];
+    const betsWinCount = client.player.reduce((acc, player: Player) => {
+      return player.bet?.nftID === winNFT.id ? acc + 1 : 0;
+    }, 0);
 
     for (const [playerID, p] of client.player) {
       const player = p as Player;
@@ -23,7 +26,7 @@ export default class extends Command {
       if (!bet) continue;
 
       if (bet.nftUrl === winNFT.url) {
-        const winAmount = bet.amount + Math.round(bet.amount * 0.4);
+        const winAmount = bet.amount + Math.round(bet.amount * 3 / (betsWinCount || 1));
         client.player.math(playerID, "+", winAmount, "coins");
         client.player.delete(playerID, "bet");
       }
