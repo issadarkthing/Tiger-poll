@@ -11,6 +11,7 @@ export default class extends Command {
   description = "start voting";
   throttle = 10 * time.HOUR;
   block = true;
+  maxRound = 10;
 
   async exec(msg: Message) {
 
@@ -24,8 +25,8 @@ export default class extends Command {
 
     let rounds = combinations.length;
 
-    if (rounds > 10) {
-      rounds = 10;
+    if (rounds > this.maxRound) {
+      rounds = this.maxRound;
     }
 
     const pairs = random.sample(combinations, rounds);
@@ -63,9 +64,7 @@ export default class extends Command {
 
       client.nft.inc(winnerID, "votes");
 
-      const nft = client.nft.get(winnerID)!;
-
-      msg.channel.send(`#${winnerID} now has ${nft.votes} votes!`);
+      msg.channel.send(`Round ${i + 1} completed`);
     }
 
     msg.channel.send("voting session completed");
