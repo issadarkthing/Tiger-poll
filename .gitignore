@@ -4,3 +4,4 @@ node_modules
 .env
 .pnpm-debug.log
 data
+bot.zip
