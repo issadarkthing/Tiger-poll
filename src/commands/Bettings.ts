@@ -7,6 +7,7 @@ import { currency } from "../utils";
 
 export default class extends Command {
   name = "bettings";
+  aliases = ["betting"];
   description = "show your current betting";
 
   async exec(msg: Message) {
