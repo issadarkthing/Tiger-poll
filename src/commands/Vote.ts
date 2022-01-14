@@ -1,5 +1,5 @@
 import { Command } from "@jiman24/commandment";
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, User } from "discord.js";
 import { client } from "..";
 import { combination } from "../utils";
 import { random, time } from "@jiman24/discordjs-utils";
@@ -12,6 +12,8 @@ export default class extends Command {
   description = "start voting";
   block = true;
   maxRound = 10;
+  timeout = 10 * time.MINUTE;
+  maxUser = 1000;
 
   async exec(msg: Message) {
 
@@ -19,11 +21,6 @@ export default class extends Command {
       throw new Error("Needs at least 2 nft");
     }
 
-    const player = Player.fromUser(msg.author);
-
-    if (player.voted) {
-      throw new Error("You have voted");
-    }
 
     const combinations = combination([...client.nft.map(x => x.url)]);
 
@@ -49,32 +46,45 @@ export default class extends Command {
     for (let i = 0; i < embeds.length; i++) {
       const embed = embeds[i];
       const pair = pairs[i];
-      let win = 0;
 
       const sentMsg = await msg.channel.send({ embeds: embed });
 
       const menu = new ButtonHandler(msg, "Please vote between A or B");
 
-      menu.setTimeout(5 * time.MINUTE);
+      const handleClick = (user: User, id: string) => {
 
-      menu.addButton("A", () => { win = 0 });
-      menu.addButton("B", () => { win = 1 });
+        const player = Player.fromUser(user);
+
+        if (player.voted) {
+          msg.channel.send(`${player.name} has already voted`);
+          return;
+        }
+
+
+        const winner = id === "A" ? pair[0] : pair[1];
+        const winnerID = client.nft.findKey(x => x.url === winner)!;
+
+        client.nft.inc(winnerID, "votes");
+
+        msg.channel.send(`${player.name} successfully voted!`);
+        player.voted = true;
+        player.save();
+      }
+
+      menu.setMultiUser(this.maxUser);
+      menu.setTimeout(this.timeout);
+
+      menu.addButton("A", handleClick);
+      menu.addButton("B", handleClick);
 
       await menu.run();
       await sentMsg.delete();
 
-      const winner = pair[win];
-      const winnerID = client.nft.findKey(x => x.url === winner)!;
-
-      client.nft.inc(winnerID, "votes");
 
       msg.channel.send(`Round ${i + 1} completed`);
     }
 
     
-    player.voted = true;
-    player.save();
-
     msg.channel.send("voting session completed");
   }
 }
